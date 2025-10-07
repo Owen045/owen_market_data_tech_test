@@ -53,25 +53,36 @@ This API enables CRE professionals to assess property performance relative to ma
 ### Prerequisites
 
 - Python 3.8 or higher
-- pip (Python package manager)
+- [uv](https://github.com/astral-sh/uv) (recommended Python package installer)
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/yourusername/owen_market_data_tech_test.git
 cd owen_market_data_tech_test
 ```
 
 2. Create and activate a virtual environment:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-3. Install dependencies:
+3. Install the project and its dependencies:
+
+**Recommended - Install everything in editable mode:**
 ```bash
-pip install -r requirements.txt
+uv pip install -e ".[dev]"
+```
+This single command installs:
+- All runtime dependencies (FastAPI, Uvicorn, Pydantic, python-dateutil)
+- All development tools (pre-commit, ruff, mypy)
+- The project itself in editable mode (so code changes are immediately reflected)
+
+**For production (runtime dependencies only):**
+```bash
+uv pip install -e .
 ```
 
 ### Running the API
@@ -325,7 +336,7 @@ The overall performance classification uses a majority voting system:
 
 ### Analytical Approach
 
-- **5% threshold for "at-market"**: Based on common CRE industry variance tolerance
+- **5% threshold for "at-market"**: A reasonable tolerance band chosen for this implementation to classify performance (properties within ±5% of market average are considered "at-market")
 - **Inverse indicator for time-to-lease**: Lower values indicate better performance
 - **Weighted performance**: Occupancy and rent metrics prioritized in property summaries
 - **Trend directions**: Stable (<1% change), up (>1% increase), down (>1% decrease)

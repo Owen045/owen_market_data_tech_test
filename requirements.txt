@@ -1,9 +1,0 @@
-fastapi>=0.115.0
-uvicorn>=0.32.0
-pydantic>=2.10.0
-python-dateutil>=2.9.0
-
-# Development dependencies
-pre-commit>=4.0.0
-ruff>=0.8.0
-mypy>=1.13.0
