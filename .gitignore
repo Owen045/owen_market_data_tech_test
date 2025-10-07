@@ -30,6 +30,9 @@ wheels/
 *.swo
 *~
 
+# macOS
+.DS_Store
+
 # Environment
 .env
 .env.local
