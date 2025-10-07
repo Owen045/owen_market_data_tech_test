@@ -1,6 +1,7 @@
 """
 Main FastAPI application for Commercial Real Estate Analytics API.
 """
+
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,7 +16,7 @@ app = FastAPI(
     description="API for analyzing commercial real estate property performance against market benchmarks",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
 )
 
 # CORS middleware
@@ -37,13 +38,7 @@ async def http_exception_handler(request, exc):
     """Handle HTTP exceptions with consistent error format."""
     return JSONResponse(
         status_code=exc.status_code,
-        content={
-            "error": {
-                "code": exc.status_code,
-                "message": exc.detail,
-                "type": "http_error"
-            }
-        }
+        content={"error": {"code": exc.status_code, "message": exc.detail, "type": "http_error"}},
     )
 
 
@@ -57,9 +52,9 @@ async def validation_exception_handler(request, exc):
                 "code": 422,
                 "message": "Validation error",
                 "type": "validation_error",
-                "details": exc.errors()
+                "details": exc.errors(),
             }
-        }
+        },
     )
 
 
@@ -69,12 +64,8 @@ async def general_exception_handler(request, exc):
     return JSONResponse(
         status_code=500,
         content={
-            "error": {
-                "code": 500,
-                "message": "Internal server error",
-                "type": "server_error"
-            }
-        }
+            "error": {"code": 500, "message": "Internal server error", "type": "server_error"}
+        },
     )
 
 
@@ -89,11 +80,12 @@ def root():
             "market_overview": "/api/markets/{market_id}",
             "property_performance": "/api/properties/{property_id}/market-performance",
             "market_properties": "/api/markets/{market_id}/properties",
-            "health": "/api/health"
-        }
+            "health": "/api/health",
+        },
     }
 
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)

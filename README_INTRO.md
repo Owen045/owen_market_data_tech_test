@@ -1,11 +1,11 @@
 ## Technical Assessment: Commercial Real Estate Analytics API
 ### Overview
 
-Build a RESTful API using Django rest framework OR FastAPI that provides analytical insights for commercial real estate properties by comparing individual asset performance against market benchmarks. 
+Build a RESTful API using Django rest framework OR FastAPI that provides analytical insights for commercial real estate properties by comparing individual asset performance against market benchmarks.
 
-I've provided two files: ```market_data.json``` and ```property_data.json``` which should have all the information required to build out the API. 
+I've provided two files: ```market_data.json``` and ```property_data.json``` which should have all the information required to build out the API.
 
-You are welcome to use AI to help you write code, as long as it is used in a controlled manner and you can explain reasoning behind decisions. 
+You are welcome to use AI to help you write code, as long as it is used in a controlled manner and you can explain reasoning behind decisions.
 
 ### Business Context
 

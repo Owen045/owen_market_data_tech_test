@@ -1,6 +1,7 @@
 """
 Data loader service for loading and accessing market and property data.
 """
+
 import json
 from datetime import date, datetime
 from pathlib import Path
@@ -49,10 +50,7 @@ class DataStore:
 
     def get_market_properties(self, market_id: int) -> List[Property]:
         """Get all properties in a market."""
-        return [
-            prop for prop in self.properties.values()
-            if prop.market_id == market_id
-        ]
+        return [prop for prop in self.properties.values() if prop.market_id == market_id]
 
     def get_latest_market_performance(self, market_id: int) -> Optional[MarketPerformance]:
         """Get the latest performance data for a market."""
@@ -64,10 +62,7 @@ class DataStore:
         return market.performance[-1]
 
     def get_market_performance_range(
-        self,
-        market_id: int,
-        start_date: Optional[date] = None,
-        end_date: Optional[date] = None
+        self, market_id: int, start_date: Optional[date] = None, end_date: Optional[date] = None
     ) -> List[MarketPerformance]:
         """Get market performance data within a date range."""
         market = self.get_market(market_id)

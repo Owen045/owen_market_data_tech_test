@@ -1,6 +1,7 @@
 """
 Analytics service for calculating performance metrics and comparisons.
 """
+
 from typing import List, Optional, Tuple
 
 from app.models.schemas import (
@@ -17,8 +18,7 @@ class AnalyticsService:
 
     @staticmethod
     def calculate_variance(
-        property_value: Optional[float],
-        market_value: float
+        property_value: Optional[float], market_value: float
     ) -> Tuple[Optional[float], str]:
         """
         Calculate variance percentage and performance indicator.
@@ -44,8 +44,7 @@ class AnalyticsService:
 
     @staticmethod
     def analyze_property_performance(
-        property_: Property,
-        market_benchmark: MarketPerformance
+        property_: Property, market_benchmark: MarketPerformance
     ) -> List[PerformanceVariance]:
         """
         Analyze property performance against market benchmarks.
@@ -56,60 +55,67 @@ class AnalyticsService:
 
         # Occupancy rate
         variance_pct, indicator = AnalyticsService.calculate_variance(
-            property_.current_occupancy_rate,
-            market_benchmark.avg_occupancy_rate
+            property_.current_occupancy_rate, market_benchmark.avg_occupancy_rate
         )
-        variances.append(PerformanceVariance(
-            metric_name="occupancy_rate",
-            property_value=property_.current_occupancy_rate,
-            market_value=market_benchmark.avg_occupancy_rate,
-            variance_percentage=variance_pct,
-            performance_indicator=indicator
-        ))
+        variances.append(
+            PerformanceVariance(
+                metric_name="occupancy_rate",
+                property_value=property_.current_occupancy_rate,
+                market_value=market_benchmark.avg_occupancy_rate,
+                variance_percentage=variance_pct,
+                performance_indicator=indicator,
+            )
+        )
 
         # Rent per sqft
         variance_pct, indicator = AnalyticsService.calculate_variance(
-            property_.current_avg_rent_per_sqft,
-            market_benchmark.avg_rent_per_sqft
+            property_.current_avg_rent_per_sqft, market_benchmark.avg_rent_per_sqft
         )
-        variances.append(PerformanceVariance(
-            metric_name="rent_per_sqft",
-            property_value=property_.current_avg_rent_per_sqft,
-            market_value=market_benchmark.avg_rent_per_sqft,
-            variance_percentage=variance_pct,
-            performance_indicator=indicator
-        ))
+        variances.append(
+            PerformanceVariance(
+                metric_name="rent_per_sqft",
+                property_value=property_.current_avg_rent_per_sqft,
+                market_value=market_benchmark.avg_rent_per_sqft,
+                variance_percentage=variance_pct,
+                performance_indicator=indicator,
+            )
+        )
 
         # Renewal rate
         variance_pct, indicator = AnalyticsService.calculate_variance(
-            property_.renewal_rate_ytd,
-            market_benchmark.renewal_rate
+            property_.renewal_rate_ytd, market_benchmark.renewal_rate
         )
-        variances.append(PerformanceVariance(
-            metric_name="renewal_rate",
-            property_value=property_.renewal_rate_ytd,
-            market_value=market_benchmark.renewal_rate,
-            variance_percentage=variance_pct,
-            performance_indicator=indicator
-        ))
+        variances.append(
+            PerformanceVariance(
+                metric_name="renewal_rate",
+                property_value=property_.renewal_rate_ytd,
+                market_value=market_benchmark.renewal_rate,
+                variance_percentage=variance_pct,
+                performance_indicator=indicator,
+            )
+        )
 
         # Lease term
         variance_pct, indicator = AnalyticsService.calculate_variance(
             float(property_.avg_lease_term_months) if property_.avg_lease_term_months else None,
-            float(market_benchmark.avg_lease_term_months)
+            float(market_benchmark.avg_lease_term_months),
         )
-        variances.append(PerformanceVariance(
-            metric_name="lease_term_months",
-            property_value=float(property_.avg_lease_term_months) if property_.avg_lease_term_months else None,
-            market_value=float(market_benchmark.avg_lease_term_months),
-            variance_percentage=variance_pct,
-            performance_indicator=indicator
-        ))
+        variances.append(
+            PerformanceVariance(
+                metric_name="lease_term_months",
+                property_value=float(property_.avg_lease_term_months)
+                if property_.avg_lease_term_months
+                else None,
+                market_value=float(market_benchmark.avg_lease_term_months),
+                variance_percentage=variance_pct,
+                performance_indicator=indicator,
+            )
+        )
 
         # Time to lease
         variance_pct, indicator = AnalyticsService.calculate_variance(
             float(property_.avg_time_to_lease_days) if property_.avg_time_to_lease_days else None,
-            float(market_benchmark.avg_time_to_lease_days)
+            float(market_benchmark.avg_time_to_lease_days),
         )
         # Note: Lower time to lease is better, so we invert the indicator
         if indicator == "outperforming":
@@ -117,13 +123,17 @@ class AnalyticsService:
         elif indicator == "underperforming":
             indicator = "outperforming"
 
-        variances.append(PerformanceVariance(
-            metric_name="time_to_lease_days",
-            property_value=float(property_.avg_time_to_lease_days) if property_.avg_time_to_lease_days else None,
-            market_value=float(market_benchmark.avg_time_to_lease_days),
-            variance_percentage=variance_pct,
-            performance_indicator=indicator
-        ))
+        variances.append(
+            PerformanceVariance(
+                metric_name="time_to_lease_days",
+                property_value=float(property_.avg_time_to_lease_days)
+                if property_.avg_time_to_lease_days
+                else None,
+                market_value=float(market_benchmark.avg_time_to_lease_days),
+                variance_percentage=variance_pct,
+                performance_indicator=indicator,
+            )
+        )
 
         return variances
 
@@ -131,7 +141,9 @@ class AnalyticsService:
     def generate_performance_summary(variances: List[PerformanceVariance]) -> str:
         """Generate a text summary of overall property performance."""
         # Count performance indicators (excluding no-data)
-        indicators = [v.performance_indicator for v in variances if v.performance_indicator != "no-data"]
+        indicators = [
+            v.performance_indicator for v in variances if v.performance_indicator != "no-data"
+        ]
 
         if not indicators:
             return "Insufficient data to determine overall performance"
@@ -141,17 +153,20 @@ class AnalyticsService:
         at_market_count = indicators.count("at-market")
 
         # Simple majority voting
-        if outperforming_count > underperforming_count:
+        if outperforming_count > underperforming_count and outperforming_count > at_market_count:
             return f"Property is generally outperforming the market ({outperforming_count}/{len(indicators)} metrics above market)"
-        elif underperforming_count > outperforming_count:
+        elif (
+            underperforming_count > outperforming_count and underperforming_count > at_market_count
+        ):
             return f"Property is generally underperforming the market ({underperforming_count}/{len(indicators)} metrics below market)"
-        else:
+        elif at_market_count > outperforming_count and at_market_count > underperforming_count:
             return f"Property is performing at market levels ({at_market_count}/{len(indicators)} metrics at market)"
+        else:
+            # Mixed performance - no clear majority
+            return f"Property has mixed performance (outperforming: {outperforming_count}, at-market: {at_market_count}, underperforming: {underperforming_count})"
 
     @staticmethod
-    def calculate_market_trends(
-        performance_history: List[MarketPerformance]
-    ) -> List[MarketTrend]:
+    def calculate_market_trends(performance_history: List[MarketPerformance]) -> List[MarketTrend]:
         """
         Calculate trends from historical performance data.
 
@@ -181,20 +196,29 @@ class AnalyticsService:
                 latest_value=latest_val,
                 previous_value=prev_val,
                 change_percentage=round(change_pct, 2),
-                trend_direction=direction
+                trend_direction=direction,
             )
 
-        trends.append(create_trend("rent_per_sqft", latest.avg_rent_per_sqft, previous.avg_rent_per_sqft))
-        trends.append(create_trend("occupancy_rate", latest.avg_occupancy_rate, previous.avg_occupancy_rate))
+        trends.append(
+            create_trend("rent_per_sqft", latest.avg_rent_per_sqft, previous.avg_rent_per_sqft)
+        )
+        trends.append(
+            create_trend("occupancy_rate", latest.avg_occupancy_rate, previous.avg_occupancy_rate)
+        )
         trends.append(create_trend("renewal_rate", latest.renewal_rate, previous.renewal_rate))
-        trends.append(create_trend("lease_term_months", float(latest.avg_lease_term_months), float(previous.avg_lease_term_months)))
+        trends.append(
+            create_trend(
+                "lease_term_months",
+                float(latest.avg_lease_term_months),
+                float(previous.avg_lease_term_months),
+            )
+        )
 
         return trends
 
     @staticmethod
     def create_property_summary(
-        property_: Property,
-        market_benchmark: MarketPerformance
+        property_: Property, market_benchmark: MarketPerformance
     ) -> PropertySummary:
         """Create a summary of property performance for multi-asset views."""
         # Calculate key variances
@@ -203,16 +227,22 @@ class AnalyticsService:
 
         if property_.current_occupancy_rate:
             occupancy_variance = round(
-                ((property_.current_occupancy_rate - market_benchmark.avg_occupancy_rate) /
-                 market_benchmark.avg_occupancy_rate) * 100,
-                2
+                (
+                    (property_.current_occupancy_rate - market_benchmark.avg_occupancy_rate)
+                    / market_benchmark.avg_occupancy_rate
+                )
+                * 100,
+                2,
             )
 
         if property_.current_avg_rent_per_sqft:
             rent_variance = round(
-                ((property_.current_avg_rent_per_sqft - market_benchmark.avg_rent_per_sqft) /
-                 market_benchmark.avg_rent_per_sqft) * 100,
-                2
+                (
+                    (property_.current_avg_rent_per_sqft - market_benchmark.avg_rent_per_sqft)
+                    / market_benchmark.avg_rent_per_sqft
+                )
+                * 100,
+                2,
             )
 
         # Determine overall performance (weighted towards occupancy and rent)
@@ -241,7 +271,7 @@ class AnalyticsService:
             current_avg_rent_per_sqft=property_.current_avg_rent_per_sqft,
             occupancy_vs_market=occupancy_variance,
             rent_vs_market=rent_variance,
-            overall_performance=overall_performance
+            overall_performance=overall_performance,
         )
 
 

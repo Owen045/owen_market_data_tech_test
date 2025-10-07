@@ -1,6 +1,7 @@
 """
 Pydantic models for data validation and serialization.
 """
+
 from datetime import date
 from typing import List, Optional
 
@@ -9,6 +10,7 @@ from pydantic import BaseModel
 
 class MarketPerformance(BaseModel):
     """Market performance metrics for a specific date."""
+
     date: date
     avg_rent_per_sqft: float
     avg_occupancy_rate: float
@@ -20,6 +22,7 @@ class MarketPerformance(BaseModel):
 
 class Market(BaseModel):
     """Market data model."""
+
     market_id: int
     market_name: str
     city: str
@@ -30,6 +33,7 @@ class Market(BaseModel):
 
 class Property(BaseModel):
     """Property data model."""
+
     id: int
     name: str
     address: str
@@ -47,6 +51,7 @@ class Property(BaseModel):
 # Response models
 class MarketTrend(BaseModel):
     """Market trend analysis."""
+
     metric_name: str
     latest_value: float
     previous_value: Optional[float] = None
@@ -56,6 +61,7 @@ class MarketTrend(BaseModel):
 
 class MarketOverviewResponse(BaseModel):
     """Response model for market overview endpoint."""
+
     market_id: int
     market_name: str
     city: str
@@ -68,6 +74,7 @@ class MarketOverviewResponse(BaseModel):
 
 class PerformanceVariance(BaseModel):
     """Variance between property and market metrics."""
+
     metric_name: str
     property_value: Optional[float] = None
     market_value: float
@@ -77,6 +84,7 @@ class PerformanceVariance(BaseModel):
 
 class PropertyMarketPerformanceResponse(BaseModel):
     """Response model for single property market performance."""
+
     property: Property
     market_benchmark: MarketPerformance
     variance_analysis: List[PerformanceVariance]
@@ -85,6 +93,7 @@ class PropertyMarketPerformanceResponse(BaseModel):
 
 class PropertySummary(BaseModel):
     """Summary of property performance vs market."""
+
     property_id: int
     property_name: str
     property_class: str
@@ -97,6 +106,7 @@ class PropertySummary(BaseModel):
 
 class MarketPropertiesResponse(BaseModel):
     """Response model for multi-asset market performance."""
+
     market_id: int
     market_name: str
     market_benchmark: MarketPerformance

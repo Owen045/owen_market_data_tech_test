@@ -316,6 +316,7 @@ The overall performance classification uses a majority voting system:
 - Analyzes 5 key metrics (occupancy, rent, renewal rate, lease term, time to lease)
 - Counts outperforming, at-market, and underperforming indicators
 - Returns the dominant classification with metric counts
+- For mixed performance (no clear majority), returns detailed breakdown of all three categories
 
 ### Missing Data Handling
 
@@ -333,6 +334,7 @@ The overall performance classification uses a majority voting system:
 3. **Pydantic models**: Strong typing and validation with minimal boilerplate
 4. **Separation of concerns**: Clear boundaries between data access, business logic, and API layers
 5. **Trend analysis**: Month-over-month comparison provides actionable insights
+6. **Code quality tools**: Ruff for linting/formatting, mypy for type checking, pre-commit hooks for automated checks
 
 ### Analytical Approach
 
@@ -349,6 +351,7 @@ The overall performance classification uses a majority voting system:
 - Date range queries with no matching data
 - Division by zero in variance calculations
 - Pagination beyond available results
+- Mixed performance scenarios (no clear majority in performance indicators)
 
 ## Testing
 

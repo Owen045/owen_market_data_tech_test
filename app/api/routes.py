@@ -1,6 +1,7 @@
 """
 API route definitions for CRE Analytics API.
 """
+
 from datetime import date
 from typing import Optional
 
@@ -23,7 +24,7 @@ def get_market_overview(
     start_date: Optional[date] = Query(None, description="Start date for performance history"),
     end_date: Optional[date] = Query(None, description="End date for performance history"),
     include_trends: bool = Query(True, description="Include trend analysis"),
-    data_store: DataStore = Depends(get_data_store)
+    data_store: DataStore = Depends(get_data_store),
 ):
     """
     Retrieve market overview with latest performance data.
@@ -40,8 +41,7 @@ def get_market_overview(
     latest_performance = data_store.get_latest_market_performance(market_id)
     if not latest_performance:
         raise HTTPException(
-            status_code=404,
-            detail=f"No performance data found for market {market_id}"
+            status_code=404, detail=f"No performance data found for market {market_id}"
         )
 
     # Get performance history if date range specified
@@ -66,17 +66,15 @@ def get_market_overview(
         market_type=market.market_type,
         latest_performance=latest_performance,
         trends=trends,
-        performance_history=performance_history
+        performance_history=performance_history,
     )
 
 
 @router.get(
-    "/properties/{property_id}/market-performance",
-    response_model=PropertyMarketPerformanceResponse
+    "/properties/{property_id}/market-performance", response_model=PropertyMarketPerformanceResponse
 )
 def get_property_market_performance(
-    property_id: int,
-    data_store: DataStore = Depends(get_data_store)
+    property_id: int, data_store: DataStore = Depends(get_data_store)
 ):
     """
     Compare an individual property against its local market benchmarks.
@@ -92,13 +90,11 @@ def get_property_market_performance(
     if not market_benchmark:
         raise HTTPException(
             status_code=404,
-            detail=f"No market data found for property's market (market_id: {property_.market_id})"
+            detail=f"No market data found for property's market (market_id: {property_.market_id})",
         )
 
     # Analyze performance
-    variance_analysis = analytics_service.analyze_property_performance(
-        property_, market_benchmark
-    )
+    variance_analysis = analytics_service.analyze_property_performance(property_, market_benchmark)
 
     # Generate summary
     performance_summary = analytics_service.generate_performance_summary(variance_analysis)
@@ -107,7 +103,7 @@ def get_property_market_performance(
         property=property_,
         market_benchmark=market_benchmark,
         variance_analysis=variance_analysis,
-        overall_performance_summary=performance_summary
+        overall_performance_summary=performance_summary,
     )
 
 
@@ -115,14 +111,13 @@ def get_property_market_performance(
 def get_market_properties(
     market_id: int,
     sort_by: Optional[str] = Query(
-        None,
-        description="Sort by: occupancy_variance, rent_variance, property_name"
+        None, description="Sort by: occupancy_variance, rent_variance, property_name"
     ),
     sort_order: str = Query("desc", description="Sort order: asc or desc"),
     limit: int = Query(10, ge=1, le=100, description="Number of results per page"),
     offset: int = Query(0, ge=0, description="Number of results to skip"),
     property_class: Optional[str] = Query(None, description="Filter by property class (A, B, C)"),
-    data_store: DataStore = Depends(get_data_store)
+    data_store: DataStore = Depends(get_data_store),
 ):
     """
     Get performance of all properties in a market.
@@ -141,8 +136,7 @@ def get_market_properties(
     market_benchmark = data_store.get_latest_market_performance(market_id)
     if not market_benchmark:
         raise HTTPException(
-            status_code=404,
-            detail=f"No performance data found for market {market_id}"
+            status_code=404, detail=f"No performance data found for market {market_id}"
         )
 
     # Get all properties in the market
@@ -154,30 +148,30 @@ def get_market_properties(
 
     # Create property summaries
     property_summaries = [
-        analytics_service.create_property_summary(prop, market_benchmark)
-        for prop in properties
+        analytics_service.create_property_summary(prop, market_benchmark) for prop in properties
     ]
 
     # Sort
     if sort_by == "occupancy_variance":
         property_summaries.sort(
-            key=lambda x: x.occupancy_vs_market if x.occupancy_vs_market is not None else float('-inf'),
-            reverse=(sort_order.lower() == "desc")
+            key=lambda x: x.occupancy_vs_market
+            if x.occupancy_vs_market is not None
+            else float("-inf"),
+            reverse=(sort_order.lower() == "desc"),
         )
     elif sort_by == "rent_variance":
         property_summaries.sort(
-            key=lambda x: x.rent_vs_market if x.rent_vs_market is not None else float('-inf'),
-            reverse=(sort_order.lower() == "desc")
+            key=lambda x: x.rent_vs_market if x.rent_vs_market is not None else float("-inf"),
+            reverse=(sort_order.lower() == "desc"),
         )
     elif sort_by == "property_name":
         property_summaries.sort(
-            key=lambda x: x.property_name,
-            reverse=(sort_order.lower() == "desc")
+            key=lambda x: x.property_name, reverse=(sort_order.lower() == "desc")
         )
 
     # Pagination
     total_count = len(property_summaries)
-    paginated_properties = property_summaries[offset:offset + limit]
+    paginated_properties = property_summaries[offset : offset + limit]
 
     return MarketPropertiesResponse(
         market_id=market.market_id,
@@ -189,8 +183,8 @@ def get_market_properties(
             "limit": limit,
             "offset": offset,
             "total": total_count,
-            "has_more": offset + limit < total_count
-        }
+            "has_more": offset + limit < total_count,
+        },
     )
 
 
