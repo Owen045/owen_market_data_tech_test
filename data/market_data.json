@@ -1,0 +1,272 @@
+[
+  {
+    "market_id": 1,
+    "market_name": "Chicago Loop Office",
+    "city": "Chicago",
+    "state": "Illinois",
+    "market_type": "office",
+    "performance": [
+      {
+        "date": "2025-01-01",
+        "avg_rent_per_sqft": 32.50,
+        "avg_occupancy_rate": 82.3,
+        "renewal_rate": 68.5,
+        "new_deal_rate": 31.5,
+        "avg_lease_term_months": 72,
+        "avg_time_to_lease_days": 156
+      },
+      {
+        "date": "2025-02-01",
+        "avg_rent_per_sqft": 33.10,
+        "avg_occupancy_rate": 83.1,
+        "renewal_rate": 71.2,
+        "new_deal_rate": 28.8,
+        "avg_lease_term_months": 68,
+        "avg_time_to_lease_days": 142
+      },
+      {
+        "date": "2025-03-01",
+        "avg_rent_per_sqft": 34.25,
+        "avg_occupancy_rate": 84.7,
+        "renewal_rate": 65.8,
+        "new_deal_rate": 34.2,
+        "avg_lease_term_months": 78,
+        "avg_time_to_lease_days": 128
+      },
+      {
+        "date": "2025-04-01",
+        "avg_rent_per_sqft": 35.80,
+        "avg_occupancy_rate": 86.2,
+        "renewal_rate": 69.4,
+        "new_deal_rate": 30.6,
+        "avg_lease_term_months": 84,
+        "avg_time_to_lease_days": 118
+      },
+      {
+        "date": "2025-05-01",
+        "avg_rent_per_sqft": 36.90,
+        "avg_occupancy_rate": 87.5,
+        "renewal_rate": 72.1,
+        "new_deal_rate": 27.9,
+        "avg_lease_term_months": 90,
+        "avg_time_to_lease_days": 105
+      },
+      {
+        "date": "2025-06-01",
+        "avg_rent_per_sqft": 37.15,
+        "avg_occupancy_rate": 88.1,
+        "renewal_rate": 74.3,
+        "new_deal_rate": 25.7,
+        "avg_lease_term_months": 86,
+        "avg_time_to_lease_days": 112
+      },
+      {
+        "date": "2025-07-01",
+        "avg_rent_per_sqft": 36.75,
+        "avg_occupancy_rate": 87.8,
+        "renewal_rate": 70.8,
+        "new_deal_rate": 29.2,
+        "avg_lease_term_months": 82,
+        "avg_time_to_lease_days": 125
+      },
+      {
+        "date": "2025-08-01",
+        "avg_rent_per_sqft": 37.40,
+        "avg_occupancy_rate": 88.4,
+        "renewal_rate": 73.5,
+        "new_deal_rate": 26.5,
+        "avg_lease_term_months": 88,
+        "avg_time_to_lease_days": 119
+      },
+      {
+        "date": "2025-09-01",
+        "avg_rent_per_sqft": 38.20,
+        "avg_occupancy_rate": 89.2,
+        "renewal_rate": 75.2,
+        "new_deal_rate": 24.8,
+        "avg_lease_term_months": 92,
+        "avg_time_to_lease_days": 108
+      }
+    ]
+  },
+  {
+    "market_id": 2,
+    "market_name": "Manhattan Midtown Office",
+    "city": "New York",
+    "state": "New York",
+    "market_type": "office",
+    "performance": [
+      {
+        "date": "2025-01-01",
+        "avg_rent_per_sqft": 68.20,
+        "avg_occupancy_rate": 85.1,
+        "renewal_rate": 78.5,
+        "new_deal_rate": 21.5,
+        "avg_lease_term_months": 96,
+        "avg_time_to_lease_days": 185
+      },
+      {
+        "date": "2025-02-01",
+        "avg_rent_per_sqft": 69.50,
+        "avg_occupancy_rate": 85.8,
+        "renewal_rate": 80.2,
+        "new_deal_rate": 19.8,
+        "avg_lease_term_months": 102,
+        "avg_time_to_lease_days": 178
+      },
+      {
+        "date": "2025-03-01",
+        "avg_rent_per_sqft": 71.80,
+        "avg_occupancy_rate": 87.3,
+        "renewal_rate": 76.8,
+        "new_deal_rate": 23.2,
+        "avg_lease_term_months": 108,
+        "avg_time_to_lease_days": 162
+      },
+      {
+        "date": "2025-04-01",
+        "avg_rent_per_sqft": 74.25,
+        "avg_occupancy_rate": 88.9,
+        "renewal_rate": 79.4,
+        "new_deal_rate": 20.6,
+        "avg_lease_term_months": 114,
+        "avg_time_to_lease_days": 145
+      },
+      {
+        "date": "2025-05-01",
+        "avg_rent_per_sqft": 76.40,
+        "avg_occupancy_rate": 90.2,
+        "renewal_rate": 82.1,
+        "new_deal_rate": 17.9,
+        "avg_lease_term_months": 120,
+        "avg_time_to_lease_days": 132
+      },
+      {
+        "date": "2025-06-01",
+        "avg_rent_per_sqft": 77.10,
+        "avg_occupancy_rate": 90.8,
+        "renewal_rate": 84.3,
+        "new_deal_rate": 15.7,
+        "avg_lease_term_months": 118,
+        "avg_time_to_lease_days": 128
+      },
+      {
+        "date": "2025-07-01",
+        "avg_rent_per_sqft": 75.90,
+        "avg_occupancy_rate": 90.1,
+        "renewal_rate": 81.8,
+        "new_deal_rate": 18.2,
+        "avg_lease_term_months": 116,
+        "avg_time_to_lease_days": 138
+      },
+      {
+        "date": "2025-08-01",
+        "avg_rent_per_sqft": 76.80,
+        "avg_occupancy_rate": 90.5,
+        "renewal_rate": 83.5,
+        "new_deal_rate": 16.5,
+        "avg_lease_term_months": 122,
+        "avg_time_to_lease_days": 135
+      },
+      {
+        "date": "2025-09-01",
+        "avg_rent_per_sqft": 78.60,
+        "avg_occupancy_rate": 91.4,
+        "renewal_rate": 85.2,
+        "new_deal_rate": 14.8,
+        "avg_lease_term_months": 126,
+        "avg_time_to_lease_days": 125
+      }
+    ]
+  },
+  {
+    "market_id": 3,
+    "market_name": "Dallas North Office",
+    "city": "Dallas",
+    "state": "Texas",
+    "market_type": "office",
+    "performance": [
+      {
+        "date": "2025-01-01",
+        "avg_rent_per_sqft": 26.80,
+        "avg_occupancy_rate": 79.2,
+        "renewal_rate": 62.5,
+        "new_deal_rate": 37.5,
+        "avg_lease_term_months": 60,
+        "avg_time_to_lease_days": 135
+      },
+      {
+        "date": "2025-02-01",
+        "avg_rent_per_sqft": 27.30,
+        "avg_occupancy_rate": 80.1,
+        "renewal_rate": 65.2,
+        "new_deal_rate": 34.8,
+        "avg_lease_term_months": 58,
+        "avg_time_to_lease_days": 128
+      },
+      {
+        "date": "2025-03-01",
+        "avg_rent_per_sqft": 28.45,
+        "avg_occupancy_rate": 81.8,
+        "renewal_rate": 61.8,
+        "new_deal_rate": 38.2,
+        "avg_lease_term_months": 66,
+        "avg_time_to_lease_days": 118
+      },
+      {
+        "date": "2025-04-01",
+        "avg_rent_per_sqft": 29.70,
+        "avg_occupancy_rate": 83.4,
+        "renewal_rate": 64.4,
+        "new_deal_rate": 35.6,
+        "avg_lease_term_months": 72,
+        "avg_time_to_lease_days": 105
+      },
+      {
+        "date": "2025-05-01",
+        "avg_rent_per_sqft": 30.85,
+        "avg_occupancy_rate": 84.9,
+        "renewal_rate": 67.1,
+        "new_deal_rate": 32.9,
+        "avg_lease_term_months": 78,
+        "avg_time_to_lease_days": 95
+      },
+      {
+        "date": "2025-06-01",
+        "avg_rent_per_sqft": 31.20,
+        "avg_occupancy_rate": 85.3,
+        "renewal_rate": 69.3,
+        "new_deal_rate": 30.7,
+        "avg_lease_term_months": 74,
+        "avg_time_to_lease_days": 98
+      },
+      {
+        "date": "2025-07-01",
+        "avg_rent_per_sqft": 30.95,
+        "avg_occupancy_rate": 84.8,
+        "renewal_rate": 66.8,
+        "new_deal_rate": 33.2,
+        "avg_lease_term_months": 70,
+        "avg_time_to_lease_days": 108
+      },
+      {
+        "date": "2025-08-01",
+        "avg_rent_per_sqft": 31.40,
+        "avg_occupancy_rate": 85.1,
+        "renewal_rate": 68.5,
+        "new_deal_rate": 31.5,
+        "avg_lease_term_months": 76,
+        "avg_time_to_lease_days": 102
+      },
+      {
+        "date": "2025-09-01",
+        "avg_rent_per_sqft": 32.15,
+        "avg_occupancy_rate": 86.2,
+        "renewal_rate": 70.2,
+        "new_deal_rate": 29.8,
+        "avg_lease_term_months": 80,
+        "avg_time_to_lease_days": 92
+      }
+    ]
+  }
+]
