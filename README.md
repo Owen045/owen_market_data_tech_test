@@ -353,41 +353,6 @@ The overall performance classification uses a majority voting system:
 - Pagination beyond available results
 - Mixed performance scenarios (no clear majority in performance indicators)
 
-## Testing
-
-### Manual Testing Examples
-
-```bash
-# Test market overview
-curl http://localhost:8000/api/markets/1
-
-# Test property performance with missing data
-curl http://localhost:8000/api/properties/2/market-performance
-
-# Test pagination
-curl "http://localhost:8000/api/markets/2/properties?limit=2&offset=2"
-
-# Test filtering by property class
-curl "http://localhost:8000/api/markets/1/properties?property_class=B"
-
-# Test date range query
-curl "http://localhost:8000/api/markets/1?start_date=2025-06-01&end_date=2025-09-01"
-
-# Test error handling (invalid ID)
-curl http://localhost:8000/api/markets/999
-```
-
-## Performance & Scalability
-
-See [PERFORMANCE_ANALYSIS.md](PERFORMANCE_ANALYSIS.md) for detailed analysis covering:
-- Current bottlenecks and computational complexity
-- Database design for 1000+ properties across 50+ markets
-- Caching strategies (Redis implementation)
-- API rate limiting recommendations
-- Pagination best practices
-- Future enhancements (predictive analytics, external integrations)
-- Monitoring and observability
-
 ## Error Handling
 
 The API returns consistent error responses:
@@ -409,28 +374,15 @@ Error types:
 
 ## Future Improvements
 
-### Short-term
 - Add unit tests with pytest
-- Implement request logging
+- Implement request logging for observability
 - Add response compression for large result sets
 - Create Docker container for easy deployment
-
-### Medium-term
 - PostgreSQL database integration
-- Redis caching layer
+- Redis caching layer for rapid access of often queried results, requires cache invalidation logic for when new data added
 - User authentication and API keys
 - Historical performance tracking for properties
-
-### Long-term
 - Predictive analytics (rent forecasting)
-- Portfolio-level aggregations
 - External data source integrations (economic indicators)
 - WebSocket support for real-time updates
-
-## License
-
-[Your License Here]
-
-## Contact
-
-[Your Contact Information]
+- Plotting UI for visualising trend data
