@@ -30,9 +30,6 @@ wheels/
 *.swo
 *~
 
-# macOS
-.DS_Store
-
 # Environment
 .env
 .env.local
@@ -40,3 +37,6 @@ wheels/
 # Claude Code
 .claude/
 CLAUDE.md
+
+# macOS
+.DS_Store
